@@ -1,8 +1,13 @@
 # Jarkom-Modul-5-2025-K09
 
+Anggota Kelompok :
+1. Angga Firmansyah - 5027241062
+2. Naruna
+
 # Topologi
 
-<img width="534" height="521" alt="1" src="https://github.com/user-attachments/assets/31fe15f5-8ca7-457b-913c-c07b64d80a58" />
+<img width="1497" height="813" alt="topologi" src="https://github.com/user-attachments/assets/ad50b97e-c2d6-4174-96b6-55601aee8d3e" />
+
 
 # Pembagian Subnet
 
