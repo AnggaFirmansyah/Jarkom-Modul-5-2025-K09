@@ -291,6 +291,79 @@ Sukses Ping :
 
 # Misi 2 dan 3
 
+```
+1. Node: VILYA
+(Block Ping Input & Redirect Trafik ke Khamul)
+
+
+# 1. Block Ping dari luar (Request), tapi izinkan Reply keluar
+iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT
+
+# 2. Redirect (Sihir Hitam)
+# Saat Vilya akses IP Khamul (Static & DHCP Range), belokkan ke IP IronHills (10.68.1.250)
+iptables -t nat -A OUTPUT -d 10.68.1.181 -p tcp --dport 80 -j DNAT --to-destination 10.68.1.250
+iptables -t nat -A OUTPUT -m iprange --dst-range 10.68.1.182-10.68.1.190 -p tcp --dport 80 -j DNAT --to-destination 10.68.1.250
+2. Node: NARYA
+(Secure DNS: Hanya Vilya yang boleh akses)
+
+Bash
+
+# 1. Izinkan Vilya (10.68.1.226)
+iptables -A INPUT -s 10.68.1.226 -p udp --dport 53 -j ACCEPT
+iptables -A INPUT -s 10.68.1.226 -p tcp --dport 53 -j ACCEPT
+
+# 2. Blokir akses DNS dari IP lain
+iptables -A INPUT -p udp --dport 53 -j DROP
+iptables -A INPUT -p tcp --dport 53 -j DROP
+3. Node: IRONHILLS
+(Web Server: Batas Koneksi & Waktu Weekend)
+
+
+# Definisi IP Faksi (Durin/Khamul, Isildur, Elendil)
+export FAKSI="10.68.1.128/26,10.68.1.192/27,10.68.0.0/24"
+
+# 1. Batasi Koneksi (Maks 3 per IP)
+iptables -A INPUT -p tcp --dport 80 -m connlimit --connlimit-above 3 -j REJECT
+
+# 2. Rule Waktu (Weekend Only & Hanya Faksi Tertentu)
+# Pastikan jam di server benar (cek dengan `date`)
+iptables -A INPUT -p tcp --dport 80 -s $FAKSI -m time --weekdays Sat,Sun -j ACCEPT
+
+# 3. Blokir sisa akses web (Hari biasa atau Faksi Elf)
+iptables -A INPUT -p tcp --dport 80 -j DROP
+4. Node: PALANTIR
+(Web Server: Port Scan Protection & Shift Kerja)
+
+
+# 1. Port Scan Protection (Log & Drop jika > 15 hit dalam 20 detik)
+iptables -N PORTSCAN
+iptables -A INPUT -p tcp --syn -m recent --name portscan --set
+iptables -A INPUT -p tcp --syn -m recent --name portscan --update --seconds 20 --hitcount 15 -j PORTSCAN
+iptables -A PORTSCAN -j LOG --log-prefix "PORT_SCAN: " --log-level 4
+iptables -A PORTSCAN -j DROP
+
+# 2. Rule Jam Kerja Elf (Gilgalad: 10.68.1.0/25) -> 07:00 - 15:00
+iptables -A INPUT -p tcp --dport 80 -s 10.68.1.0/25 -m time --timestart 07:00 --timestop 15:00 -j ACCEPT
+
+# 3. Rule Jam Kerja Manusia (Elendil & Isildur) -> 17:00 - 23:00
+iptables -A INPUT -p tcp --dport 80 -s 10.68.0.0/24 -m time --timestart 17:00 --timestop 23:00 -j ACCEPT
+iptables -A INPUT -p tcp --dport 80 -s 10.68.1.192/27 -m time --timestart 17:00 --timestop 23:00 -j ACCEPT
+
+# 4. Blokir sisa akses web
+iptables -A INPUT -p tcp --dport 80 -j DROP
+5. Node: WILDERLAND (Misi 3)
+(Isolasi Total Khamul)
+
+
+
+# Blokir Trafik DARI Khamul (Keluar)
+iptables -A FORWARD -m iprange --src-range 10.68.1.182-10.68.1.190 -j DROP
+
+# Blokir Trafik MENUJU Khamul (Masuk)
+iptables -A FORWARD -m iprange --dst-range 10.68.1.182-10.68.1.190 -j DROP
+```
+
 Blokir ping untuk semua node ke vilya, contoh node elendil :
 
 <img width="661" height="145" alt="image" src="https://github.com/user-attachments/assets/67a6446b-d5b9-4b99-96fe-018ee62cde11" />
