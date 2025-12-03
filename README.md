@@ -289,7 +289,7 @@ Sukses Ping :
 
 <img width="679" height="116" alt="image" src="https://github.com/user-attachments/assets/47f8f233-c989-485a-b995-785dc9b977af" />
 
-# Misi 2
+# Misi 2 dan 3
 
 Blokir ping untuk semua node ke vilya, contoh node elendil :
 
@@ -315,6 +315,14 @@ Bukti gagal bekerja :
 
 <img width="741" height="81" alt="image" src="https://github.com/user-attachments/assets/1c7bddeb-d5ed-4c5d-80c6-a34e9240f0a4" />
 
+Bukti lain Misi 2 berhasil :
 
-# Misi 3
+<img width="696" height="180" alt="image" src="https://github.com/user-attachments/assets/eb11a0ff-18d2-4794-acef-b2bd623fa120" />
+
+Hanya bisa di Vilya :
+
+<img width="496" height="161" alt="image" src="https://github.com/user-attachments/assets/cadb7de3-adac-4ab4-9e5a-5ed9e79e52b5" />
+
+
+
 
