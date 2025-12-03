@@ -2,7 +2,6 @@
 
 Anggota Kelompok :
 1. Angga Firmansyah - 5027241062
-2. Naruna
 
 # Topologi
 
@@ -289,3 +288,33 @@ Pemmbuatan server DNS dan DHCP
 Sukses Ping : 
 
 <img width="679" height="116" alt="image" src="https://github.com/user-attachments/assets/47f8f233-c989-485a-b995-785dc9b977af" />
+
+# Misi 2
+
+Blokir ping untuk semua node ke vilya, contoh node elendil :
+
+<img width="661" height="145" alt="image" src="https://github.com/user-attachments/assets/67a6446b-d5b9-4b99-96fe-018ee62cde11" />
+
+Namun vilya dapat ping ke google : 
+
+<img width="726" height="263" alt="image" src="https://github.com/user-attachments/assets/e319666a-3c65-4e93-aa74-2cd81404416b" />
+
+Sukses NC dan ping ironhills.com : 
+
+<img width="634" height="128" alt="image" src="https://github.com/user-attachments/assets/ac70b9ff-bb63-4ec0-b250-cd4986e52d11" />
+
+Hanya bisa node vilya yang connect : 
+
+<img width="627" height="193" alt="image" src="https://github.com/user-attachments/assets/a6f88960-1b14-48af-b80c-5676acd5f82b" />
+
+<img width="548" height="98" alt="image" src="https://github.com/user-attachments/assets/beba16d9-10b9-4fef-8053-0aebd1ae13e3" />
+
+Bukti gagal bekerja : 
+
+<img width="729" height="74" alt="image" src="https://github.com/user-attachments/assets/fd0e6946-48ee-4c41-88e7-be0f25c2f17e" />
+
+<img width="741" height="81" alt="image" src="https://github.com/user-attachments/assets/1c7bddeb-d5ed-4c5d-80c6-a34e9240f0a4" />
+
+
+# Misi 3
+
